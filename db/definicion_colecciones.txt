@@ -1,4 +1,6 @@
 Nombre DB : heroku_8jp6czm4
+dbuser : admin
+dbpassword : admin1
 Acceso por terminal : mongo ds149960.mlab.com:49960/heroku_8jp6czm4 -u <dbuser> -p <dbpassword> 
 Acceso desde aplicaciones : mongodb://<dbuser>:<dbpassword>@ds149960.mlab.com:49960/heroku_8jp6czm4
 
