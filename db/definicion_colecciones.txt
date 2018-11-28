@@ -1,0 +1,33 @@
+Nombre DB : heroku_8jp6czm4
+Acceso por terminal : mongo ds149960.mlab.com:49960/heroku_8jp6czm4 -u <dbuser> -p <dbpassword> 
+Acceso desde aplicaciones : mongodb://<dbuser>:<dbpassword>@ds149960.mlab.com:49960/heroku_8jp6czm4
+
+Colecciones :
+
+Sensores{
+    tipo : String,
+    id : String (Unico),
+    valor : Number (Double, Int),
+    fecha : Date (Incluye hora),
+    ceiba : String (Id de la ceiba a la que pertenece)
+}
+
+Usuarios{
+    idUsuario : String (Correo),
+    contraseña : String,
+    tipo : String (Administrador/Normal),
+    nombreApellido : String
+}
+
+Enchufes{
+    estado : Number (On(1)/Off(0)),
+    id : String (Unico),
+    fecha : Date (Incluye hora),
+    ceiba : String (Id de la ceiba a la que pertenece)
+}
+
+Ceibas{
+    id : String (Unico),
+    estado : Number (On(1)/Off(0)),
+    fecha : Date (Incluye hora)
+}
