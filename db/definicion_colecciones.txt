@@ -9,8 +9,10 @@ Colecciones :
 Sensores{
     tipo : String,
     id : String (Unico),
-    valor : Number (Double, Int),
-    fecha : Date (Incluye hora),
+    valor : [{
+                valor: Number (Double/Int),
+                fecha : Date
+                }],
     ceiba : String (Id de la ceiba a la que pertenece)
 }
 
