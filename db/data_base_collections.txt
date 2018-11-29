@@ -1,0 +1,54 @@
+DB Name : heroku_8jp6czm4
+dbuser : admin
+dbpassword : admin1
+Shell access : mongo ds149960.mlab.com:49960/heroku_8jp6czm4 -u <dbuser> -p <dbpassword> 
+API access : mongodb://<dbuser>:<dbpassword>@ds149960.mlab.com:49960/heroku_8jp6czm4
+
+Collections :
+
+PV_Devices{
+    measure : String,
+    id_sensor : String,
+    value : [{
+                value: Number (Double/Int),
+                date_time : Date
+                }]
+}
+
+Users{
+    userName : String (email),
+    password : String,
+    type : String (Admin/Common),
+    f_name : String,
+    l_name : String
+}
+
+###############################################################################################################
+A esta colección creo que es mejor hacerle unos cambios respecto a como esta propuesta en el documento
+de excel, creo que cada "Measure" deberia ser un campo de la colección y ese campo tendria un arreglo
+y cada entrada del arreglo contiene un documento embebido con el valor de cada "Measure" y la fecha,
+sería algo así:
+
+Ceiba_Data{
+    state_of_charge : [{value : Double, date_time : Date}],
+    battery_voltage : [{value : Double, date_time : Date}],
+    device_connected : [{type : Double, date_time : Date}], ('type' could be PC, Tablet, mobile phone , etc)
+    AC_consuption : [{value : Double, date_time : Date}]
+}
+
+Si  hacemos esta coleccion de este modo a mi parecer seria mas facil acceder a la información y toda
+la informacion estaría agrupada por si posteriormente se requiere hacer analisis sobre esta.
+###############################################################################################################
+
+Ceiba_Data{
+    measure : String,
+    id_m : Number,
+    value: Number (Double/Int),
+    date_time : Date
+}
+
+Ceiba_Aux_Variables{
+    variable : String (Socket, Ceiba, etc),
+    state : Int (0 -> off / 1 -> On),
+    date_time : Date
+}
