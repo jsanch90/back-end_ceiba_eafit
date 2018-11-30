@@ -36,7 +36,7 @@ app.post('/user',function(req, res){
             console.log("Some error", err);
             return res.json({
                 "success": false,
-                "msg": "This user already exist",
+                "msg": "Error",
                 "error": err
             });
         }
