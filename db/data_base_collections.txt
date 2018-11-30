@@ -15,6 +15,18 @@ PV_Devices{
                 }]
 }
 
+###########################################################################################################
+PV_Device{   //Alter
+    T: [{value : Double, date_time : Date}],
+    P: [{value : Double, date_time : Date}],
+    H: [{value : Double, date_time : Date}],
+    C1: [{value : Double, date_time : Date}],
+    V1: [{value : Double, date_time : Date}],
+    C2: [{value : Double, date_time : Date}],
+    V2: [{value : Double, date_time : Date}]
+}
+###########################################################################################################
+
 Users{
     userName : String (email),
     password : String,
