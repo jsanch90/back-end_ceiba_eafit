@@ -24,7 +24,7 @@ if (process.env.NODE_ENV === 'development') {
 var port = process.env.PORT || 8080;
 
 mongoose.Promise = global.Promise;
-mongoose.connect(config.database, function (err) {
+mongoose.connect(config.database, { useNewUrlParser: true }, function (err) {
     if (err) {
         console.log('Not connected to database ' + err);
         throw err;

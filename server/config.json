@@ -1,3 +1,4 @@
 {
-    "database": "mongodb://admin:admin1@ds149960.mlab.com:49960/heroku_8jp6czm4"
+    "database" :"mongodb://127.0.0.1:27017/Ceiba",
+    "database2": "mongodb://admin:admin1@ds149960.mlab.com:49960/heroku_8jp6czm4"
 }

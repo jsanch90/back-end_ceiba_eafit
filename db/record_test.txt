@@ -1,4 +1,24 @@
 //Ceiba_Data
 {
-	"measure" : [{"type" : "Voltage" , "value" : 34, "date_time" : "Fri Nov 30 2018 10:13:27 GMT-0500"},{"type" : "Cuarrent" , "value" : 19, "date_time" : "Fri Nov 30 2018 10:13:28 GMT-0500"},{"type" : "Cuarrent" , "value" : 19, "date_time" : "Fri Nov 30 2018 10:13:28 GMT-0500"}]
+	"measure" : [{"type" : "Voltage" , "value" : 34, "date_time" : "Fri Nov 30 2018 10:13:27 GMT-0500"},{"type" : "Current" , "value" : 19, "date_time" : "Fri Nov 30 2018 10:13:28 GMT-0500"},{"type" : "Current" , "value" : 19, "date_time" : "Fri Nov 30 2018 10:13:28 GMT-0500"}]
+}
+
+//PV_Devices
+{
+	"P" :[{"value" : 34}],
+	"T" :[{"value" : 30}],
+	"H" :[{"value" : 15}],
+	"V1" :[{"value" : 12.2}],
+	"C1" :[{"value" : 35.2}],
+	"V2" :[{"value" : 1.2}],
+	"C2" :[{"value" : 45.2}]
+}
+
+//Users
+{
+	"userName" : "jsanch90@eafit.edu.co",
+	"password" : "1234567",
+	"type" : "admin",
+	"f_name" : "Joshua",
+	"l_name" : "Sanchez"
 }

@@ -5,7 +5,7 @@ var bcrypt = require('bcrypt-nodejs');
 
 // With this route we can create an user in the data base.
 app.post('/user',function(req, res){
-    if (req.body.user == ' '|| req.body.user == null||
+    if (req.body.userName == ' '|| req.body.userName == null||
     req.body.password == ' '|| req.body.password == null||
     req.body.f_name == ' '|| req.body.f_name == null||
     req.body.l_name == ' '|| req.body.l_name == null||
