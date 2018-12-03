@@ -25,6 +25,8 @@ PV_Device{   //Alter
     C2: [{value : Double, date_time : Date}],
     V2: [{value : Double, date_time : Date}]
 }
+
+Metodos  :Por fecha y por sensor 
 ###########################################################################################################
 
 Users{
@@ -34,6 +36,8 @@ Users{
     f_name : String,
     l_name : String
 }
+
+eliminar, buscar por userName, modificar campos, login 
 
 ###############################################################################################################
 A esta colección creo que es mejor hacerle unos cambios respecto a como esta propuesta en el documento
@@ -68,3 +72,9 @@ Ceiba_Aux_Variables{
     state : Int (0 -> off / 1 -> On),
     date_time : Date
 }
+
+Metodos : Ver estados de la variable, Modificar el estado , fecha del estado
+
+Cuando se traen todos los registros orenar por fecha.
+
+Buscar: notificar cambios en la base de datos a la raspberry.

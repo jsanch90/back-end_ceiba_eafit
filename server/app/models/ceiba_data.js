@@ -1,11 +1,13 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
+// Modificar poner 15 campos. 
+
 var Ceiba_data = new Schema({
+    type : {type: String, required : true},
     measure : [{
-        type: {type : String, required : true},
         values : {type : Number, required : true},
-        date_time : { type : Date, required : true}
+        date_time : { type : Date, required : true, default : Date.now}
     }]
 });
 

@@ -7,6 +7,7 @@ app.post('/pv_device',function(req, res){
     if (req.body.T == ' '|| req.body.T == null||
     req.body.P == ' '|| req.body.P == null||
     req.body.H == ' '|| req.body.H == null||
+    req.body.L == ' '|| req.body.L == null||
     req.body.C1 == ' '|| req.body.C1 == null||
     req.body.V1 == ' '|| req.body.V1 == null||
     req.body.C2 == ' '|| req.body.C2 == null||
@@ -21,6 +22,7 @@ app.post('/pv_device',function(req, res){
         P : req.body.P,
         H : req.body.H,
         T : req.body.T,
+        L : req.body.L,
         C1 : req.body.C1,
         V1 : req.body.V1,
         C2 : req.body.C2,
@@ -61,6 +63,7 @@ app.get('/pv_device_records', function (req, res) {
 app.put('/pv_device_add_records', function (req, res) {
     PV.updateOne({},{$addToSet : {P:req.body.P,
                                T:req.body.T,
+                               L:req.body.L,
                                H:req.body.H,
                                C1:req.body.C1,
                                V1:req.body.V1,
