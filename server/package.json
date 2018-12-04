@@ -9,7 +9,6 @@
   "author": "Joshua Sánchez Álvarez",
   "license": "ISC",
   "dependencies": {
-    "bcrypt": "^3.0.2",
     "bcrypt-nodejs": "0.0.3",
     "cors": "^2.8.5",
     "errorhandler": "^1.5.0",
