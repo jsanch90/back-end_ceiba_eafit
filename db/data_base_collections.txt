@@ -26,7 +26,13 @@ PV_Device{   //Alter
     V2: [{value : Double, date_time : Date}]
 }
 
-Metodos  :Por fecha y por sensor 
+PV_Device{ // Current
+    measure: { type: String, required: true },
+    value: { type: Number, required: true },
+    date_time: { type: Date, required: true, default: Date.now }
+}
+
+Metodos  :Por fecha y por sensor *
 ###########################################################################################################
 
 Users{
@@ -78,3 +84,6 @@ Metodos : Ver estados de la variable, Modificar el estado , fecha del estado
 Cuando se traen todos los registros orenar por fecha.
 
 Buscar: notificar cambios en la base de datos a la raspberry.
+
+  db.pv_devices.find({V2:{$all:[{$elemMatch:{value:0.2}}]}})
+

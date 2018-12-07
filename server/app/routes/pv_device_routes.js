@@ -3,44 +3,20 @@ var app = module.exports = express.Router();
 var PV = require('../models/pv_device');
 
 //Save a record (a new one) in the DB
-app.post('/pv_device',function(req, res){
-    if (req.body.T == ' '|| req.body.T == null||
-    req.body.P == ' '|| req.body.P == null||
-    req.body.H == ' '|| req.body.H == null||
-    req.body.L == ' '|| req.body.L == null||
-    req.body.C1 == ' '|| req.body.C1 == null||
-    req.body.V1 == ' '|| req.body.V1 == null||
-    req.body.C2 == ' '|| req.body.C2 == null||
-    req.body.V2 == ' '|| req.body.V2 == null) {
-        return res.status(400).send({
-            "success": false,
-            "msg": "Error, all fields must be filled"
-        });
-    }
-
-    var newPV_device = new PV({
-        P : req.body.P,
-        H : req.body.H,
-        T : req.body.T,
-        L : req.body.L,
-        C1 : req.body.C1,
-        V1 : req.body.V1,
-        C2 : req.body.C2,
-        V2 : req.body.V2
-    });
-
-    newPV_device.save(function (err) {
+app.post('/pv_device', function (req, res) {
+    PV.insertMany(req.body.data, function (err, docs) {
         if (err) {
-            console.log("Some error", err);
             return res.json({
                 "success": false,
-                "msg": "Error",
+                "msg": "Error while saving the data",
                 "error": err
             });
         }
-        res.status(201).send({ "success": true, "msg": "Record saved" });
+        res.status(200).send({
+            "success": true,
+            "result": "records saved"
+        });
     });
-
 });
 
 //Get all records of the DB
@@ -60,15 +36,9 @@ app.get('/pv_device_records', function (req, res) {
     });
 });
 
-app.put('/pv_device_add_records', function (req, res) {
-    PV.updateOne({},{$addToSet : {P:req.body.P,
-                               T:req.body.T,
-                               L:req.body.L,
-                               H:req.body.H,
-                               C1:req.body.C1,
-                               V1:req.body.V1,
-                               C2:req.body.C2,
-                               V2:req.body.V2}},function (err, records) {
+//Get all records from a specific sensor
+app.get('/get_sensor_data', function (req, res) {
+    PV.find({ measure: req.body.sensor }, function (err, records) {
         if (err) {
             return res.json({
                 "success": false,
@@ -76,25 +46,179 @@ app.put('/pv_device_add_records', function (req, res) {
                 "error": err
             });
         }
-        
         res.status(200).send({
             "success": true,
             "result": records
         });
     });
+});
 
-    // PV.find({}, function (err, records) {
-    //     if (err) {
-    //         return res.json({
-    //             "success": false,
-    //             "msg": "Error while retrieving the data",
-    //             "error": err
-    //         });
-    //     }
-        
-    //     res.status(200).send({
-    //         "success": true,
-    //         "result": records
-    //     });
-    // });
+//Get the records by date in different ways:
+//- In a range if lowerLimit and upperLimit fields are setted in the json request body
+//- Greater or equal to the lowerLimit field if the upperLimit field is null in the json request body
+//- Lower or equal to the upperLimit field if the lowerLimit field is null in the json requestbody
+//- Just in the given date if date field is setted in the json request body
+app.get('/get_sensor_data_by_date', function (req, res) {
+
+    if (req.body.upperLimit == null && req.body.lowerLimit == null && req.body.data == null) {
+        return res.json({
+            "success": false,
+            "msg": "Error while retrieving the data, json request body is empty"
+        });
+    }
+
+    if (req.body.data != null) {
+        var data1 = req.body.data.toString() + "T00:00:00.000Z";
+        var data2 = req.body.data.toString() + "T11:59:59.000Z";
+        PV.find({ date_time: { $gte: data1, $lte: data2 } }, function (err, records) {
+            if (err) {
+                return res.json({
+                    "success": false,
+                    "msg": "Error while retrieving the data",
+                    "error": err
+                });
+            }
+            res.status(200).send({
+                "success": true,
+                "result": records
+            });
+        });
+    }
+
+    if (req.body.lowerLimit != null && req.body.upperLimit != null) {
+        var lowerLimit2 = req.body.lowerLimit.toString() + "T00:00:00.000Z";
+        var upperLimit2 = req.body.upperLimit.toString() + "T00:00:00.000Z";
+        PV.find({ date_time: { $gte: lowerLimit2, $lte: upperLimit2 } }, function (err, records) {
+            if (err) {
+                return res.json({
+                    "success": false,
+                    "msg": "Error while retrieving the data",
+                    "error": err
+                });
+            }
+            res.status(200).send({
+                "success": true,
+                "result": records
+            });
+        });
+    }
+
+    if (req.body.lowerLimit != null && req.body.upperLimit == null) {
+        var lowerLimit2 = req.body.lowerLimit.toString() + "T00:00:00.000Z";
+        PV.find({ date_time: { $gte: lowerLimit2 } }, function (err, records) {
+            if (err) {
+                return res.json({
+                    "success": false,
+                    "msg": "Error while retrieving the data",
+                    "error": err
+                });
+            }
+            res.status(200).send({
+                "success": true,
+                "result": records
+            });
+        });
+    }
+
+    if (req.body.lowerLimit == null && req.body.upperLimit != null) {
+        var upperLimit2 = req.body.upperLimit.toString() + "T00:00:00.000Z";
+        PV.find({ date_time: { $lte: upperLimit2 } }, function (err, records) {
+            if (err) {
+                return res.json({
+                    "success": false,
+                    "msg": "Error while retrieving the data",
+                    "error": err
+                });
+            }
+            res.status(200).send({
+                "success": true,
+                "result": records
+            });
+        });
+    }
+});
+
+//Get the records by date and sensor type in different ways:
+//- In a range if lowerLimit and upperLimit fields are setted in the json request body
+//- Greater or equal to the lowerLimit field if the upperLimit field is null in the json request body
+//- Lower or equal to the upperLimit field if the lowerLimit field is null in the json requestbody
+//- Just in the given date if date field is setted in the json request body
+app.get('/get_sensor_data', function (req, res) {
+
+    if (req.body.upperLimit == null && req.body.lowerLimit == null && req.body.data == null) {
+        return res.json({
+            "success": false,
+            "msg": "Error while retrieving the data, json request body is empty"
+        });
+    }
+
+    if (req.body.data != null) {
+        var data1 = req.body.data.toString() + "T00:00:00.000Z";
+        var data2 = req.body.data.toString() + "T11:59:59.000Z";
+        PV.find({ measure: req.body.sensor, date_time: { $gte: data1, $lte: data2 } }, function (err, records) {
+            if (err) {
+                return res.json({
+                    "success": false,
+                    "msg": "Error while retrieving the data",
+                    "error": err
+                });
+            }
+            res.status(200).send({
+                "success": true,
+                "result": records
+            });
+        });
+    }
+
+    if (req.body.lowerLimit != null && req.body.upperLimit != null) {
+        var lowerLimit2 = req.body.lowerLimit.toString() + "T00:00:00.000Z";
+        var upperLimit2 = req.body.upperLimit.toString() + "T00:00:00.000Z";
+        PV.find({ measure: req.body.sensor, date_time: { $gte: lowerLimit2, $lte: upperLimit2 } }, function (err, records) {
+            if (err) {
+                return res.json({
+                    "success": false,
+                    "msg": "Error while retrieving the data",
+                    "error": err
+                });
+            }
+            res.status(200).send({
+                "success": true,
+                "result": records
+            });
+        });
+    }
+
+    if (req.body.lowerLimit != null && req.body.upperLimit == null) {
+        var lowerLimit2 = req.body.lowerLimit.toString() + "T00:00:00.000Z";
+        PV.find({ measure: req.body.sensor, date_time: { $gte: lowerLimit2 } }, function (err, records) {
+            if (err) {
+                return res.json({
+                    "success": false,
+                    "msg": "Error while retrieving the data",
+                    "error": err
+                });
+            }
+            res.status(200).send({
+                "success": true,
+                "result": records
+            });
+        });
+    }
+
+    if (req.body.lowerLimit == null && req.body.upperLimit != null) {
+        var upperLimit2 = req.body.upperLimit.toString() + "T00:00:00.000Z";
+        PV.find({ measure: req.body.sensor, date_time: { $lte: upperLimit2 } }, function (err, records) {
+            if (err) {
+                return res.json({
+                    "success": false,
+                    "msg": "Error while retrieving the data",
+                    "error": err
+                });
+            }
+            res.status(200).send({
+                "success": true,
+                "result": records
+            });
+        });
+    }
 });

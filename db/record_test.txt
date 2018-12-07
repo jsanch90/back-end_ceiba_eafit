@@ -6,6 +6,7 @@
 //PV_Devices
 {
 	"P" :[{"value" : 34}],
+	"L" :[{"value" : 34}],
 	"T" :[{"value" : 30}],
 	"H" :[{"value" : 15}],
 	"V1" :[{"value" : 12.2}],
@@ -14,11 +15,40 @@
 	"C2" :[{"value" : 45.2}]
 }
 
+- Insert data pv_device
+{
+	"data":[{"measure":"T", "value": 2},{"measure":"L", "value": 1.1},{"measure":"P", "value": 2}]
+}
+
+- Get by date
+{
+	"data" : "2018-12-06",
+	"upperLimit": "2018-12-07",
+	"lowerLimit": "2018-12-07"
+}
+
+- Get by data and sensor 
+{
+	"data" : "2018-12-06",
+	"upperLimit": "2018-12-07",
+	"lowerLimit": "2018-12-07",
+	"sensor":"T"
+}
+
 //Users
+
+- Create 
 {
 	"userName" : "jsanch90@eafit.edu.co",
 	"password" : "1234567",
 	"type" : "admin",
 	"f_name" : "Joshua",
 	"l_name" : "Sanchez"
+}
+
+- Login
+
+{
+	"userName" : "jsanch90@eafit.edu.co",
+	"password" : "1234567"
 }
