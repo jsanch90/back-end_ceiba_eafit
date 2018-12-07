@@ -46,7 +46,7 @@ app.post('/user', function (req, res) {
 
 //login : storing and comparing username and password
 app.get('/user_login', function (req, res) {
-    User.findOne({userName: req.body.userName}).then(function (user) {
+    User.findOne({ userName: req.body.userName }).then(function (user) {
         if (!user) {
             res.send({
                 "success": false,
@@ -67,6 +67,81 @@ app.get('/user_login', function (req, res) {
                     });
                 }
             });
+        }
+    });
+});
+
+//With this route we can update the password, first name and last name from an user.
+app.put('/user_update', function (req, res) {
+    User.findOne({ userName: req.body.userName }).then(function (user) {
+        if (!user) {
+            res.send({
+                "success": false,
+                "msg": "User doesn't exist"
+            });
+        }
+        else {
+            if(req.body.password != null && req.body.password != '' && req.body.password != ' ' ){
+                user.password 
+                bcrypt.hash(req.body.password, null, null, function (err, hash) {
+                    if (err) return next(err);
+                    user.password = hash;
+                });
+            }
+
+            if(req.body.f_name != null && req.body.f_name != '' && req.body.f_name != ' ' ){
+                user.f_name = req.body.f_name;
+            }
+
+
+            if(req.body.l_name != null && req.body.l_name != '' && req.body.l_name != ' ' ){
+                user.l_name = req.body.l_name;
+            }
+
+            user.save((err, usr) => {
+                if (err) {
+                    res.status(500).send(err)
+                }
+                res.send({
+                    "success": true,
+                    "msg": "User updated"
+                });
+            });
+        }
+    });
+});
+
+//Get user information searching by userName
+app.get('/get_user', function (req, res) {
+    User.findOne({ userName: req.body.userName }).then(function (user) {
+        if (!user) {
+            res.send({
+                "success": false,
+                "msg": "User not found"
+            });
+        }
+        else {
+           return  res.send({
+            "success": true,
+            "msg": user
+        });
+        }
+    });
+});
+
+app.delete('/delete_user', function (req, res) {
+    User.findOneAndRemove({ userName: req.body.userName }).then(function (user) {
+        if (!user) {
+            res.send({
+                "success": false,
+                "msg": "User not found"
+            });
+        }
+        else {
+           return  res.send({
+            "success": true,
+            "msg": "User deleted"
+        });
         }
     });
 });
