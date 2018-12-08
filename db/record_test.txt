@@ -1,8 +1,3 @@
-//Ceiba_Data
-{
-	"measure" : [{"type" : "Voltage" , "value" : 34, "date_time" : "Fri Nov 30 2018 10:13:27 GMT-0500"},{"type" : "Current" , "value" : 19, "date_time" : "Fri Nov 30 2018 10:13:28 GMT-0500"},{"type" : "Current" , "value" : 19, "date_time" : "Fri Nov 30 2018 10:13:28 GMT-0500"}]
-}
-
 //PV_Devices
 {
 	"P" :[{"value" : 34}],
@@ -52,3 +47,31 @@
 	"userName" : "jsanch90@eafit.edu.co",
 	"password" : "1234567"
 }
+
+- Delete
+
+{
+	"userName" : "jsanch90@eafit.edu.co"
+}
+
+//Ceiba Aux Variables 
+
+- Insert one or many
+
+{
+	"data":[{"variable":"Socket1", "state": 0},{"variable":"Ceiba", "state": 1}]
+}
+
+- Get variable
+
+{
+	"variable":"Socket1"
+}
+
+- Update variable
+
+{
+	"variable":"Socket1",
+	"state" : 1
+}
+

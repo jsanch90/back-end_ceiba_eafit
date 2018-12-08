@@ -43,7 +43,7 @@ Users{
     l_name : String
 }
 
-eliminar, buscar por userName, modificar campos, login 
+eliminar, buscar por userName, modificar campos, login * 
 
 ###############################################################################################################
 A esta colección creo que es mejor hacerle unos cambios respecto a como esta propuesta en el documento
@@ -58,11 +58,10 @@ Ceiba_Data{
     AC_consuption : [{value : Double, date_time : Date}]
 }
 
-Si  hacemos esta coleccion de este modo a mi parecer seria mas facil acceder a la información y toda
-la informacion estaría agrupada por si posteriormente se requiere hacer analisis sobre esta.
-
-Ceiba_Data{
-    measure : [{type,value,date_time}]
+Ceiba_data{ //Alter
+    measure: { type: String},
+    value: { type: Number},
+    date_time: { type: Date, default: Date.now }
 }
 ###############################################################################################################
 
