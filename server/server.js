@@ -36,6 +36,7 @@ mongoose.connect(config.database, { useNewUrlParser: true }, function (err) {
 app.use(require('./app/routes/user_routes'));
 app.use(require('./app/routes/ceiba_data_routes'));
 app.use(require('./app/routes/pv_device_routes'));
+app.use(require('./app/routes/ceiba_aux_variables_routes'));
 
 http.createServer(app).listen(port, function (err) {
      console.log('listeing in http://localhost:' + port);
