@@ -45,7 +45,7 @@ app.post('/user', function (req, res) {
 });
 
 //login : storing and comparing username and password
-app.get('/user_login', function (req, res) {
+app.post('/user_login', function (req, res) {
     User.findOne({ userName: req.body.userName }).then(function (user) {
         if (!user) {
             res.send({
@@ -112,7 +112,7 @@ app.put('/user_update', function (req, res) {
 });
 
 //Get user information searching by userName
-app.get('/get_user', function (req, res) {
+app.post('/get_user', function (req, res) {
     User.findOne({ userName: req.body.userName }).then(function (user) {
         if (!user) {
             res.send({
