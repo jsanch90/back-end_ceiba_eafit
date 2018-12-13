@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UserService } from './user_service/user.service';
 import { ActivatedRoute, Router } from '@angular/router';
 
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -32,6 +33,7 @@ export class AppComponent {
       this.info = data;
       if(this.info.success == true){
           console.log("logged");
+          this.router.navigateByUrl('/user_dashboard');
       }
     });
   }

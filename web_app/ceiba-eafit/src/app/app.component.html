@@ -1,95 +1,41 @@
-<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<link src="/bootslog.css" rel="stylesheet">
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
 <!------ Include the above in your HEAD tag ---------->
 
-
-<html>
-
-<head>
-
-  <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-  <link src="/bootslog.css" rel="stylesheet">
-  <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <!------ Include the above in your HEAD tag ---------->
-</head>
-
-<body id="LoginForm">
-  <div class="container">
-    <div class="login-form">
-      <div class="main-div">
-        <div class="panel">
-          <h2>Ceiba Solar EAFIT</h2>
-          <p>Please enter your email and password</p>
-        </div>
-        <form id="Login">
-
-          <div class="form-group">
-
-
-            <input type="email" class="form-control" id="inputEmail" placeholder="Email Address" [(ngModel)]="email" [ngModelOptions]="{standalone: true}">
-
-          </div>
-
-          <div class="form-group">
-
-            <input type="password" class="form-control" id="inputPassword" placeholder="Password" [(ngModel)]="password" [ngModelOptions]="{standalone: true}">
-
-          </div>
-          <div class="forgot">
-            <a href="reset.html">Forgot password?</a>
-          </div>
-
-          <div class="forgot">
-            <a href="reset.html">Register</a>
-          </div>
-          <button type="submit" class="btn btn-primary" (click) = "login()">Login</button>
-
-        </form>
-      </div>
-    </div>
-  </div>
-
-  <!-- Footer -->
-
-  <section class="footer">
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+<!-- Navigation -->
+<div class="fixed-top">
+  <nav class="navbar navbar-expand-lg navbar-dark mx-background-top-linear">
     <div class="container">
-      <div class="row">
-        <div class="col-lg-4  col-md-4 col-sm-4">
-          <div class="footer_dv">
-            <h4>Information</h4>
-            <ul>
-              <li>
-                <p>Some information</p>
-              </li>
-            </ul>
-          </div>
-        </div>
-        <div class="col-lg-4  col-md-4 col-sm-4">
-          <div class="footer_dv">
-            <h4>Services</h4>
-            <ul>
-              <li>
-                <p>Some information</p>
-              </li>
-            </ul>
-          </div>
-        </div>
-        <div class="col-lg-4  col-md-4 col-sm-4">
-          <div class="footer_dv">
-            <h4>Contact us</h4>
-            <p>Some information<br>
+      <a class="navbar-brand" href="index.html" style="text-transform: uppercase;">ceiba solar eafit</a>
+      <!-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive"
+        aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button> -->
+      <div class="navbar-collapse" id="navbarResponsive">
 
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="#">Contact</a>
+          </li>
 
-            </p>
-          </div>
-        </div>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Information</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="#">Register</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" routerLink="login">Login</a>
+          </li>
+        </ul>
       </div>
     </div>
-  </section>
+  </nav>
+  <router-outlet></router-outlet>
+</div>
 
-</body>
-
-</html>
