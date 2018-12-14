@@ -47,4 +47,16 @@ export class UserService {
       map(this.extractData),
       catchError(this.handleError));
   }
+
+  userRegistration(f_name,l_name,email,type,password): Observable<any>{
+    return this.http.post(this.apiUrl+'user',{
+      f_name : f_name,
+      l_name:l_name,
+      userName:email,
+      type:type,
+      password:password
+    },httpOptions).pipe(
+      map(this.extractData),
+      catchError(this.handleError));
+  }
 }

@@ -8,6 +8,7 @@ import { AppComponent } from './app.component';
 
 import { UserService } from './user_service/user.service';
 import { ServicesSettings } from './services_settings';
+import {CommonDataService} from './common-data-service/common-data.service';
 
 import {SharedModule} from './shared/shared.module';
 
@@ -23,7 +24,7 @@ import {SharedModule} from './shared/shared.module';
     HttpClientModule,
     SharedModule
   ],
-  providers: [UserService, ServicesSettings],
+  providers: [UserService, ServicesSettings,CommonDataService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
