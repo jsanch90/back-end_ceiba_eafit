@@ -9,6 +9,8 @@ import { AppComponent } from './app.component';
 import { UserService } from './user_service/user.service';
 import { ServicesSettings } from './services_settings';
 
+import {SharedModule} from './shared/shared.module';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -18,7 +20,8 @@ import { ServicesSettings } from './services_settings';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    SharedModule
   ],
   providers: [UserService, ServicesSettings],
   bootstrap: [AppComponent]

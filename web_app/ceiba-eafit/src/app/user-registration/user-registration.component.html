@@ -1,0 +1,56 @@
+<div>
+  <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+  <link src="/bootslog.css" rel="stylesheet">
+  <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+  <!------ Include the above in your HEAD tag ---------->
+
+
+  <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+  <link src="/bootslog.css" rel="stylesheet">
+  <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <!------ Include the above in your HEAD tag ---------->
+
+  <body id="LoginForm">
+    <div class="container">
+      <div class="login-form">
+        <div class="main-div">
+          <div class="panel">
+            <h2>Ceiba Solar EAFIT</h2>
+            <p>Please fill all fields to create an account</p>
+          </div>
+          <form id="Login">
+
+            <div class="form-group">
+              <input type="email" class="form-control" id="inputName" placeholder="First name" [(ngModel)]="f_name"
+                [ngModelOptions]="{standalone: true}">
+            </div>
+
+            <div class="form-group">
+              <input type="email" class="form-control" id="inputLName" placeholder="Last name" [(ngModel)]="l_name"
+                [ngModelOptions]="{standalone: true}">
+            </div>
+
+            <div class="form-group">
+              <input type="email" class="form-control" id="inputEmail" placeholder="Email Address" [(ngModel)]="email"
+                [ngModelOptions]="{standalone: true}">
+            </div>
+
+            <div class="form-group">
+              <input type="password" class="form-control" id="inputPassword" placeholder="Password" [(ngModel)]="password"
+                [ngModelOptions]="{standalone: true}">
+            </div>
+
+            <div class="forgot">
+              <a routerLink="/login">Already have an account ?</a>
+            </div>
+            <button type="submit" class="btn btn-primary" (click)="register()">Register</button>
+
+          </form>
+        </div>
+      </div>
+    </div>
+
+  </body>
+</div>

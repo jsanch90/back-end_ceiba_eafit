@@ -1,0 +1,55 @@
+<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<script>
+  /*Head animatioon change JQuery code below*/
+
+  $(document).on('scroll', function () {
+
+    if ($(this).scrollTop() > 1) {
+      $('header').addClass('stivky');
+    }
+
+    else {
+      $('header').removeClass('stivky');
+    }
+  });
+
+  /*top botton Scroll to top animatioon change JQuery code below*/
+
+  $(document).on('click', '#scrollToTop', function () {
+    $('html,body').animate({ scrollTop: 0 }, 500);
+    return false;
+  });
+
+  /*top botton show/hide animatioon change JQuery code below*/
+
+  $(document).scroll(function (e) {
+    var scrollpos = $(this).scrollTop();
+
+    if (scrollpos < 500) {
+      $('#scrollToTop').addClass('hide');
+    }
+    else {
+      $('#scrollToTop').removeClass('hide');
+
+    }
+
+
+  });
+</script>
+<!------ Include the above in your HEAD tag ---------->
+
+<div class="wrapper">
+  <header>
+    <div class="container">
+      <div id="logo">CEIBA SOLAR EAFIT</div>
+      <nav>
+        <a routerLink="register">Register</a>
+        <a routerLink="login">Login</a>
+      </nav>
+    </div>
+  </header>
+  <a id="scrollToTop" class="hide" href="#"><i class="fa fa-arrow-circle-up"></i></a>
+
+</div>
