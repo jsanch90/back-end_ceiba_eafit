@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { UserService } from '../user_service/user.service';
-import { CommonDataService } from '../common-data-service/common-data.service';
+import { UserService } from '../../services/user_service/user.service';
+import { CommonDataService } from '../../services/common-data-service/common-data.service';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
@@ -39,6 +39,7 @@ export class LoginComponentComponent implements OnInit {
         }
       } else if (this.info.success == false) {
         alert("Error:\n" + this.info.msg);
+        this.password='';
       }
     });
   }

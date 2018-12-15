@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { UserDashboardComponent } from './user-dashboard/user-dashboard.component';
-import { LoginComponentComponent } from './login-component/login-component.component';
-import { UserRegistrationComponent } from './user-registration/user-registration.component';
+import { UserDashboardComponent } from './components/user-dashboard/user-dashboard.component';
+import { LoginComponentComponent } from './components/login-component/login-component.component';
+import { UserRegistrationComponent } from './components/user-registration/user-registration.component';
 
 const routes: Routes = [
   { path: 'user_dashboard', component: UserDashboardComponent },

@@ -1,4 +1,6 @@
 import { Component, OnInit, HostListener } from '@angular/core';
+import { CommonDataService } from '../../../../services/common-data-service/common-data.service';
+
 
 @Component({
   selector: 'app-header',
@@ -7,8 +9,7 @@ import { Component, OnInit, HostListener } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
   navOpen = false;
-  constructor() { }
-
+  constructor(public commonDataService:CommonDataService) { }
   ngOnInit() {
   }
 }

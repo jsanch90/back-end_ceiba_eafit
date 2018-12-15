@@ -37,7 +37,7 @@ app.get('/pv_device_records', function (req, res) {
 });
 
 //Get all records from a specific sensor
-app.get('/get_sensor_data', function (req, res) {
+app.post('/get_sensor_data', function (req, res) {
     PV.find({ measure: req.body.sensor }, null, { sort: { date_time: -1 } }, function (err, records) {
         if (err) {
             return res.json({
