@@ -1,3 +1,35 @@
-<p>
-  sensors-data works!
-</p>
+<div *ngIf="chart">
+    <form action="">
+      <table>
+        <tr>
+  
+          <th>
+            <input type="radio" name="sensor" id="Humidity" [(ngModel)]="sensor" [ngModelOptions]="{standalone: true}" value="H">
+            Humidity
+          </th>
+  
+          <th>
+            <input type="radio" name="sensor" id="Temperature" [(ngModel)]="sensor" [ngModelOptions]="{standalone: true}" value="T">
+            Temperature
+          </th>
+  
+          <th>
+            <input type="radio" name="sensor" id="Light" [(ngModel)]="sensor" [ngModelOptions]="{standalone: true}" value="L">
+            Light
+          </th>
+  
+          <th>
+            <button (click)="showGraph()">Graph</button>
+          </th>
+  
+          <th>
+            <button (click)="clearGraph()">Clear</button>
+          </th>
+  
+          <a class="btn btn-clear" title="Download JSON" [href]="downloadJsonHref" [download]="sensor+'.json'"> Download data </a>
+  
+        </tr>
+      </table>
+    </form>
+    <canvas id="canvas" *ngIf="show">{{ chart }}</canvas>
+  </div>
