@@ -1,10 +1,12 @@
+@import url("https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css");
 body{
-    font-family:Roboto;
+    font-family:ubuntu;
 }
 
 footer{
      background-color: #33383c;
      padding:25px 10px;
+     font-family:ubuntu;
 }	       
 
 .logo{

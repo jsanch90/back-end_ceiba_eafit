@@ -7,4 +7,5 @@ export class CommonDataService {
 
   constructor() { }
   public logged:any;
+  public sensors :any;
 }

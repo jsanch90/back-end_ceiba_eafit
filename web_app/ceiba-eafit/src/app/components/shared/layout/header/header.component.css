@@ -84,8 +84,45 @@ header .stivky #logo{
 	transform: scale(0,0);
 }
 
+.b-select-wrap {
+    border: none;
+    color: #1092C9;
+    overflow: hidden;
+    position: relative;
+    border-radius: 3px;
+}
 
+.b-select-wrap::after {
+    content: "⌄";
+    position: absolute;
+    right: 0px;
+    top: -15px;
+    z-index: 1;
+    text-align: center;
+    width: 10%;
+    height: 100%;
+    pointer-events: none;
+    font-size: 35px;
+}
 
+.b-select {
+    padding: 5px 10px;
+    background-color:#75b14f;
+    border: 0;
+    outline: none;
+	font-size: 18px;
+	color: #fff;
+    -webkit-appearance: none; /* for webkit browsers */
+    -moz-appearance: none; /* for firefox */
+    appearance: none; /* for modern browsers */
+}
+
+select {
+	height:40px;
+	line-height:30px;
+} 
+
+/* remove default caret for ie */
 
 
 

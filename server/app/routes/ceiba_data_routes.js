@@ -37,7 +37,7 @@ app.get('/ceiba_data_get_all', function (req, res) {
 });
 
 //Get all records from a specific measuring device
-app.get('/get_measuring_device_data', function (req, res) {
+app.post('/get_measuring_device_data', function (req, res) {
     Ceiba.find({ measure: req.body.device }, null, { sort: { date_time: -1 } }, function (err, records) {
         if (err) {
             return res.json({

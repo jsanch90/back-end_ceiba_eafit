@@ -1,6 +1,6 @@
-import { Component, OnInit, HostListener } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { CommonDataService } from '../../../../services/common-data-service/common-data.service';
-
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -9,7 +9,28 @@ import { CommonDataService } from '../../../../services/common-data-service/comm
 })
 export class HeaderComponent implements OnInit {
   navOpen = false;
-  constructor(public commonDataService:CommonDataService) { }
+  constructor(public commonDataService:CommonDataService, public router:Router) { }
   ngOnInit() {
+  }
+
+  public select = false;
+
+
+
+  logout(){
+    this.commonDataService.logged=false;
+    this.commonDataService.sensors =false;
+  }
+
+  goToSensors() {
+    this.commonDataService.sensors = true;
+  }
+
+  goToCeiba(){
+    this.commonDataService.sensors = false;
+  }
+
+  pr(){
+    console.log("prrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr");
   }
 }

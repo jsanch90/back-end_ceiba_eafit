@@ -53,15 +53,32 @@
   <a id="scrollToTop" class="hide" href="#"><i class="fa fa-arrow-circle-up"></i></a>
 </div>
 
-<div class="wrapper" *ngIf="this.commonDataService.logged">
-    <header>
-      <div class="container">
-        <div id="logo">CEIBA SOLAR EAFIT</div>
-        <nav>
-          <a routerLink="register">Graphs</a>
-          <a routerLink="login">Logout</a>
-        </nav>
-      </div>
-    </header>
-    <a id="scrollToTop" class="hide" href="#"><i class="fa fa-arrow-circle-up"></i></a>
-  </div>
+<div class="wrapper" *ngIf="this.commonDataService.logged && !this.commonDataService.sensors">
+  <header>
+    <div class="container">
+      <div id="logo">CEIBA SOLAR EAFIT</div>
+      <nav>
+        <a routerLink="sensors_data" (click)="goToSensors()">Sensors</a>
+
+        <a routerLink="login" (click)="logout()">Logout</a>
+
+      </nav>
+    </div>
+  </header>
+  <a id="scrollToTop" class="hide" href="#"><i class="fa fa-arrow-circle-up"></i></a>
+</div>
+
+<div class="wrapper" *ngIf="this.commonDataService.logged && this.commonDataService.sensors">
+  <header>
+    <div class="container">
+      <div id="logo">CEIBA SOLAR EAFIT</div>
+      <nav>
+        <a routerLink="user_dashboard" (click)="goToCeiba()">Ceiba varibles</a>
+
+        <a routerLink="login" (click)="logout()">Logout</a>
+
+      </nav>
+    </div>
+  </header>
+  <a id="scrollToTop" class="hide" href="#"><i class="fa fa-arrow-circle-up"></i></a>
+</div>

@@ -1,7 +1,33 @@
-<div *ngIf="chart" class="chartdiv">
-  <canvas id="canvas">{{ chart }}</canvas>
-</div>
+<div *ngIf="chart">
+  <form action="">
+    <table>
+      <tr>
 
-<div>
-    <p>Hola prros :v</p>
+        <th>
+          <input type="radio" name="vars" id="battery" [(ngModel)]="vars" [ngModelOptions]="{standalone: true}" value="Battery">
+          Battery
+        </th>
+
+        <th>
+          <input type="radio" name="vars" id="current" [(ngModel)]="vars" [ngModelOptions]="{standalone: true}" value="Current">
+          Current
+        </th>
+
+        <th>
+          <input type="radio" name="vars" id="voltage" [(ngModel)]="vars" [ngModelOptions]="{standalone: true}" value="Voltage">
+          Voltage
+        </th>
+
+        <th>
+          <button (click)="showGraph()">Graph</button>
+        </th>
+
+        <th>
+          <button (click)="clearGraph()">Clear</button>
+        </th>
+
+      </tr>
+    </table>
+  </form>
+  <canvas id="canvas" *ngIf="show">{{ chart }}</canvas>
 </div>

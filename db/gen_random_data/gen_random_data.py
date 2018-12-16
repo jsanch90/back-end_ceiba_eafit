@@ -5,7 +5,7 @@ from datetime import timedelta, datetime
 
 client = MongoClient('localhost', 27017)
 db = client.Ceiba
-collection = db.pv_devices
+collection = db.ceiba_datas
 
 
 def random_date(start, end):
@@ -18,7 +18,7 @@ def random_date(start, end):
 # num : number of records that we want generate
 # l_limit, u_limit -> data range
 def add_data(num, l_limit, u_limit):
-    options = ["T", "P", "L", "H"]
+    options = ["Battery","Voltage","Current"]
     data = []
     d1 = datetime.strptime('1/1/2017 1:30 PM', '%m/%d/%Y %I:%M %p')
     d2 = datetime.strptime('1/1/2018 4:50 AM', '%m/%d/%Y %I:%M %p')
@@ -30,4 +30,4 @@ def add_data(num, l_limit, u_limit):
     collection.insert_many(data)
 
 
-add_data(200, 1, 40)
+add_data(80, 50, 60)
