@@ -58,6 +58,8 @@ export class UserDashboardComponent implements OnInit {
 
 
   getVarData(varName) {
+    console.log(varName);
+    
     this.ceibaVarsService.getVarByName(varName).subscribe((data: {}) => {
       this.info = data;
       this.generateDownloadJsonUri(this.info);
@@ -121,6 +123,7 @@ export class UserDashboardComponent implements OnInit {
 
   showGraph() {
     this.show = true;
+    this.chart=[];
     this.getVarData(this.vars);
   }
 
