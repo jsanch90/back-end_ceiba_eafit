@@ -97,7 +97,6 @@ export class UserDashboardComponent implements OnInit {
   }
 
   setCurrentVars() {
-
     this.ceibaVarsService.getVarByName("Current").subscribe((data: {}) => {
       this.info = data;
       this.cCurrent = this.info['result'].map(res => res.value)[0].toFixed(4);
@@ -122,6 +121,7 @@ export class UserDashboardComponent implements OnInit {
   }
 
   showGraph() {
+    this.setCurrentVars();
     this.show = true;
     this.chart=[];
     this.getVarData(this.vars);
