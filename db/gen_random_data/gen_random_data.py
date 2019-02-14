@@ -5,7 +5,7 @@ from datetime import timedelta, datetime
 
 client = MongoClient('localhost', 27017)
 db = client.Ceiba
-collection = db.ceiba_datas
+collection = db.ceiba_datas # here you must select the collection that you want to use 
 
 
 def random_date(start, end):
