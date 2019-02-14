@@ -7,8 +7,6 @@ from pymodbus.constants import Endian
 class ModBus_API:
 
 	def __init__(self, IP_ADDRESS='169.254.167.246'):
-		self.MIN_SIGNED = -2147483648
-		self.MAX_UNSIGNED =  4294967295
 		self.COLOR_CONTROL_IP = IP_ADDRESS
 		self.client = None
 
@@ -20,7 +18,7 @@ class ModBus_API:
 			else:
 				print('Error while connecting to: {0}'.format(self.COLOR_CONTROL_IP))
 		except:
-			print('Error connecting')
+			print('Unknown connection error')
 
 	def read_device_data(self,address, unit, count=1, d_type='int32'):
 		received = self.client.read_input_registers (address=address, count=count, unit=unit)
@@ -37,7 +35,7 @@ class ModBus_API:
 			interpreted = message.decode_16bit_int()
 		elif d_type == 'uint16':
 			interpreted = message.decode_16bit_uint()
-		else: ## if no data type is defined do raw interpretation of the delivered data
+		else:
 			interpreted = message.decode_16bit_uint()
 		return interpreted
 
