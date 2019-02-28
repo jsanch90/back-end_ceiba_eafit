@@ -1,0 +1,7 @@
+Amplifier gain calculator : http://www.learningaboutelectronics.com/Articles/Op-amp-gain-calculator.php#answer2 (noninverting)
+
+Res:
+	- Rin = 1k
+	- Rf = 47K
+
+Amplifier : LM324n
