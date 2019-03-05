@@ -1,18 +1,32 @@
 #include <CurieBLE.h>
 //Enable debug to be able to print in arduino IDE
+
+//BOSCH variables
 bool debug = true;
-long h_priority_time = 5000;
-long l_priority_time = 15000;
+long h_priority_time = 5000;  // Time in milliseconds to send the high priority registers to the RaspBerry
+long l_priority_time = 15000; // Time in milliseconds to send the low priority registers to the RaspBerry
 long last_time_h = 0;
 long last_time_l = 0;
-
 unsigned char data2[20] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+
+//Temperature sensor variables
+int temperature_pin = 0; // Analog pin by reading the value of the sensor
+float temp_val = 0;      // Value read by the temperature sensor
+long temp_time = 20000;
+long last_time_temp = 0;
+
+//Irradiation sensor variables (Spektron 210)
+int irradiation_pin = 1; // Analog pin by reading the value of the sensor
+float irra_val = 0;      //Irradiation value
+float amp_gain = 51;     //Amplifier gain (LM324N)
+float input_v = 3.3;     //Input voltage in Volts
+float sensor_value = 0;  //Raw value read by the sensor
+long irra_time = 20000;
+long last_time_irra = 0;
 
 void setup()
 {
     Serial.begin(9600);
-    Serial1.begin(9600);
-
     BLE.begin();
     BLE.scan();
 }
@@ -30,7 +44,8 @@ void loop()
             peripheral.connect();
             peripheral.poll();
             if (peripheral.discoverAttributesByService("55b741d0-7ada-11e4-82f8-0800200c9a66"))
-            {}
+            {
+            }
 
             delay(2000);
 
@@ -41,12 +56,15 @@ void loop()
             XDKsensorFusion.writeByte(0x00);
             //Turn on DataStreaming
             XDKSensorHighRate.writeByte(0x01);
-
         }
 
-        if (peripheral.discoverAttributesByService("c2967210-7ba4-11e4-82f8-0800200c9a66")){}
-        else{}
-        
+        if (peripheral.discoverAttributesByService("c2967210-7ba4-11e4-82f8-0800200c9a66"))
+        {
+        }
+        else
+        {
+        }
+
         while (peripheral.connected())
         {
             delay(20);
@@ -61,10 +79,11 @@ void loop()
 
                 if (HighPrioChar.valueLength() > 0)
                 {
-                  if((millis() - last_time_h) >= h_priority_time){
-                    printHighPrioData(HighPrioChar.value(), HighPrioChar.valueLength());
-                    last_time_h = millis();
-                  }
+                    if ((millis() - last_time_h) >= h_priority_time)
+                    {
+                        printHighPrioData(HighPrioChar.value(), HighPrioChar.valueLength());
+                        last_time_h = millis();
+                    }
                 }
             }
 
@@ -73,11 +92,24 @@ void loop()
                 LowPrioChar.read();
                 if (LowPrioChar.valueLength() > 0)
                 {
-                  if((millis() - last_time_l) >= l_priority_time){
-                    printLowPrioData(LowPrioChar.value(), LowPrioChar.valueLength());
-                    last_time_l = millis();
-                  }
+                    if ((millis() - last_time_l) >= l_priority_time)
+                    {
+                        printLowPrioData(LowPrioChar.value(), LowPrioChar.valueLength());
+                        last_time_l = millis();
+                    }
                 }
+            }
+
+            if ((millis() - last_time_temp) >= temp_time)
+            {
+                read_temperature_sensor();
+                last_time_temp = millis();
+            }
+
+            if ((millis() - last_time_irra) >= irra_time)
+            {
+                read_irradiation_sensor();
+                last_time_irra = millis();
             }
         }
     }
@@ -138,7 +170,6 @@ void printHighPrioData(const unsigned char data[], int length)
         Serial.print(gyroZ);
         Serial.println();
     }
-
 }
 
 void printLowPrioData(const unsigned char data[], int length)
@@ -192,4 +223,22 @@ void printLowPrioData(const unsigned char data[], int length)
             Serial.println();
         }
     }
+}
+
+void read_temperature_sensor()
+{
+    temp_val = analogRead(temperature_pin); // read the input pin
+    temp_val = temp_val - 521.0;            // 541 = 1,72V = 20°C --> 551 = 1,75V = 30°C
+    Serial.print("temp_sen,");
+    Serial.print((int)temp_val);
+    Serial.println();
+}
+
+void read_irradiation_sensor()
+{
+    sensor_value = (((float)analogRead(irradiation_pin) * input_v) / 1024.0) / amp_gain; // read the input pin
+    irra_val = (sensor_value * 1000.0) / 0.075;
+    Serial.print("irra_sen,");
+    Serial.print(irra_val);
+    Serial.println();
 }
