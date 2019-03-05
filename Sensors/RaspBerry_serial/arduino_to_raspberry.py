@@ -9,8 +9,8 @@ def make_json(line):
     var_names = parts[0].split(';')
     values = parts[1].strip('\r\n').split(';')
     json_body=''
-    print(var_names)
-    print(values)
+    #print(var_names)
+    #print(values)
     for i in range(len(var_names)):
         if i == len(var_names):
             json_body+='{0}:{1}\n'.format(var_names[i],values[i])
