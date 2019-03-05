@@ -15,6 +15,8 @@ def make_json(line):
         if i == len(var_names):
             json_body+='{0}:{1}\n'.format(var_names[i],values[i])
         json_body+='{0}:{1},\n'.format(var_names[i],values[i])
+    last_comma_index = json_body.rfind(',')
+    json_body = json_body[:last_comma_index]+json_body[last_comma_index+1:]
     return '{\n'+'{0}'.format(json_body)+'}'
 
 while True:
