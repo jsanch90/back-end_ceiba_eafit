@@ -1,7 +1,7 @@
 import serial
 
-port = "/dev/ttyACM0"
-s1 = serial.Serial(port,9600)
+port = "/dev/ttyACM0" # USB port where Arduino is connected
+s1 = serial.Serial(port,9600) # Start the serial port
 s1.flushInput()
 
 def make_json(line):
