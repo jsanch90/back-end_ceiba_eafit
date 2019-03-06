@@ -1,17 +1,24 @@
 import RPi.GPIO as GPIO
 from time import sleep
 
-relayPin = 32
+relayPin1 = 32 #relay 1
+relayPin2 = 36 #relay 2
 
 GPIO.setmode(GPIO.BOARD)
-GPIO.setup(relayPin, GPIO.OUT)
+
+GPIO.setup(relayPin1, GPIO.OUT)
+GPIO.setup(relayPin2, GPIO.OUT)
 
 
 while True:
-    ## Turn on the Relay (this works - it clicks gives 3.3v)
-    GPIO.output(relayPin,GPIO.HIGH)
+    ## Turn on the Relay
+    GPIO.output(relayPin1,GPIO.HIGH)
+    sleep(5)
+    GPIO.output(relayPin2,GPIO.HIGH)
     sleep(5)
 
-    ## Turn off the Relay (this does nothing but goes back to 0v)
-    GPIO.output(relayPin,GPIO.LOW)
+    ## Turn off the Relay
+    GPIO.output(relayPin1,GPIO.LOW)
+    sleep(5)
+    GPIO.output(relayPin2,GPIO.LOW)
     sleep(5)
