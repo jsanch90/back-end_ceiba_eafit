@@ -1,8 +1,8 @@
 import RPi.GPIO as GPIO
 from time import sleep
 
-relayPin1 = 32 #relay 1
-relayPin2 = 36 #relay 2
+relayPin1 = 38 #relay 1
+relayPin2 = 40 #relay 2
 
 GPIO.setmode(GPIO.BOARD)
 
