@@ -12,5 +12,8 @@ triggers.register_op_trigger(notify_manager, 'my_account', 'my_transactions')
 triggers.tail_oplog()
 
 # make an operation to simulate interaction
-client['my_account']['my_transactions'].insert_one({"balance": 1000})
-triggers.stop_tail()
+#client['my_account']['my_transactions'].insert_one({"balance": 1000})
+#triggers.stop_tail()
+
+while True:
+    y= 1
