@@ -19,13 +19,17 @@ def set_relays_state(op_document=None):
     state_rel_2 = db.relays.find({"relay" : 2})[0]['state']
 
     if int(state_rel_1) == 1:
+        print(int(state_rel_1), ' rel_1 state')
         GPIO.output(relayPin1,GPIO.HIGH)
     else:
+        print(int(state_rel_1), ' rel_1 state')
         GPIO.output(relayPin1,GPIO.LOW)
 
     if int(state_rel_2) == 1:
+        print(int(state_rel_2), ' rel_2 state')
         GPIO.output(relayPin2,GPIO.HIGH)
     else:
+        print(int(state_rel_2), ' rel_2 state')
         GPIO.output(relayPin2,GPIO.LOW)
     
     print('Document updated!')
