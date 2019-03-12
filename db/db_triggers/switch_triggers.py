@@ -20,17 +20,17 @@ def set_relays_state(op_document=None):
 
     if int(state_rel_1) == 1:
         print(int(state_rel_1), ' rel_1 state')
-        GPIO.output(relayPin1,GPIO.HIGH)
+        GPIO.output(relayPin1,GPIO.LOW)
     else:
         print(int(state_rel_1), ' rel_1 state')
-        GPIO.output(relayPin1,GPIO.LOW)
+        GPIO.output(relayPin1,GPIO.HIGH)
 
     if int(state_rel_2) == 1:
         print(int(state_rel_2), ' rel_2 state')
-        GPIO.output(relayPin2,GPIO.HIGH)
+        GPIO.output(relayPin2,GPIO.LOW)
     else:
         print(int(state_rel_2), ' rel_2 state')
-        GPIO.output(relayPin2,GPIO.LOW)
+        GPIO.output(relayPin2,GPIO.HIGH)
     
     print('Document updated!')
 
