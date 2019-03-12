@@ -1,3 +1,8 @@
+"""
+pymongo version = 3.2
+mongodb version = 2.4.1
+"""
+
 from mongotriggers import MongoTrigger
 from pymongo import MongoClient
 import RPi.GPIO as GPIO
