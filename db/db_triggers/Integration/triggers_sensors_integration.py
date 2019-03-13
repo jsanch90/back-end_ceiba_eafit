@@ -26,16 +26,12 @@ def make_json(line):
     parts = line.decode('utf8').split(',')
     var_names = parts[0].split(';')
     values = parts[1].strip('\r\n').split(';')
-    json_body=''
+    json_body={}
     #print(var_names)
     #print(values)
     for i in range(len(var_names)):
-        if i == len(var_names):
-            json_body+='{0}:{1}\n'.format(var_names[i],values[i])
-        json_body+='{0}:{1},\n'.format(var_names[i],values[i])
-    last_comma_index = json_body.rfind(',')
-    json_body = json_body[:last_comma_index]+json_body[last_comma_index+1:]
-    return '{\n'+'{0}'.format(json_body)+'}'
+        json_body[var_names[i]]=float(values[i])
+    return json_body
 
 def set_relays_state(op_document=None):
     state_rel_1 = db.relays.find({"relay" : 1})[0]['state']
@@ -58,8 +54,7 @@ def set_relays_state(op_document=None):
     print('Document updated!')
 
 def send_register_to_db(json_record):
-    body = json.loads(json_record)
-    print(body)
+    print(json_record)
 
 triggers.register_update_trigger(set_relays_state, 'test_relays', 'relays')
 triggers.tail_oplog()
