@@ -54,7 +54,12 @@ def set_relays_state(op_document=None):
     print('Document updated!')
 
 def send_register_to_db(json_record):
-    print(json_record)
+    if 'temp_sen' in json_record:
+        db.temperature.insert_one(json_record)
+        print(json_record)
+    elif 'irra_sen' in json_record:
+        db.irradiation.insert_one(json_record)
+        print(json_record)
 
 triggers.register_update_trigger(set_relays_state, 'test_relays', 'relays')
 triggers.tail_oplog()
