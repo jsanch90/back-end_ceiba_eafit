@@ -5,7 +5,7 @@ s1 = serial.Serial(port,9600) # Start the serial port
 s1.flushInput()
 
 def make_json(line):
-    parts = line.split(',')
+    parts = line.decode('utf8').split(',')
     var_names = parts[0].split(';')
     values = parts[1].strip('\r\n').split(';')
     json_body=''
