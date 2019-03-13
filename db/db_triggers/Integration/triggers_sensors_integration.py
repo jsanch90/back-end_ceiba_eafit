@@ -60,6 +60,12 @@ def send_register_to_db(json_record):
     elif 'irra_sen' in json_record:
         db.irradiation.insert_one(json_record)
         print(json_record)
+    elif 'XDK_AX' in json_record:
+        db.high_priority_sensors.insert_one(json_record)
+        print(json_record)
+    elif 'XDK_L' in json_record or 'XDK_MX' in json_record:
+        db.low_priority_sensors.insert_one(json_record)
+        print(json_record)
 
 triggers.register_update_trigger(set_relays_state, 'test_relays', 'relays')
 triggers.tail_oplog()
