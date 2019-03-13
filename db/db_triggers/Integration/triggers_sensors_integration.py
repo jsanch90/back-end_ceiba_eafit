@@ -67,6 +67,9 @@ def send_register_to_db(json_record):
         db.low_priority_sensors.insert_one(json_record)
         print(json_record)
 
+#Initializing the relays
+set_relays_state()
+
 triggers.register_update_trigger(set_relays_state, 'test_relays', 'relays')
 triggers.tail_oplog()
 
