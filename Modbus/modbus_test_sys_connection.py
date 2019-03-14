@@ -7,6 +7,8 @@ from pymodbus.constants import Endian
 class ModBus_API:
 
 	def __init__(self, IP_ADDRESS='169.254.167.246'):
+		self.MIN_SIGNED = -2147483648
+		self.MAX_UNSIGNED =  4294967295
 		self.COLOR_CONTROL_IP = IP_ADDRESS
 		self.client = None
 
@@ -18,7 +20,7 @@ class ModBus_API:
 			else:
 				print('Error while connecting to: {0}'.format(self.COLOR_CONTROL_IP))
 		except:
-			print('Unknown connection error')
+			print('Error connecting')
 
 	def read_device_data(self,address, unit, count=1, d_type='int32'):
 		received = self.client.read_input_registers (address=address, count=count, unit=unit)
@@ -35,7 +37,7 @@ class ModBus_API:
 			interpreted = message.decode_16bit_int()
 		elif d_type == 'uint16':
 			interpreted = message.decode_16bit_uint()
-		else:
+		else: ## if no data type is defined do raw interpretation of the delivered data
 			interpreted = message.decode_16bit_uint()
 		return interpreted
 
@@ -47,16 +49,19 @@ class ModBus_API:
 		if n == 0:
 			return 'idle'
 		elif n == 1:
-			return 'charing'
+			return 'charging'
 		elif n == 2:
 			return 'discharging'
 
 	def show_data(self):
-		print('Battery voltage: {0}'.format(self.read_device_data(840,100,d_type='uint16')/10.0))
-		print('Battery current: {0}'.format(self.read_device_data(841,100,d_type='int16')/10.0))
-		print('Battery power: {0}'.format(self.read_device_data(842,100,d_type='int16')))
-		print('Battery state of charge: {0}'.format(self.read_device_data(843,100,d_type='uint16')))
-		print('Battery state: {0}'.format(self.battery_state_map(self.read_device_data(842,100,d_type='int16'))))
+		print('Battery voltage: {0}V'.format(self.read_device_data(840,100,d_type='uint16')/10.0))
+		print('Battery current: {0}A'.format(self.read_device_data(841,100,d_type='int16')/10.0))
+		print('Battery power: {0}W'.format(self.read_device_data(842,100,d_type='int16')))
+		print('Battery state of charge: {0}%'.format(self.read_device_data(843,100,d_type='uint16')))
+		print('Battery state: {0}'.format(self.battery_state_map(self.read_device_data(844,100,d_type='int16'))))
+                print('AC consumption: {0}W'.format(self.read_device_data(817,100,d_type='int16')))
+                print('vebus volt : {0}'.format(float(self.read_device_data(15,246,d_type='uint16'))/10.0))
+                print('vebus current : {0}'.format(float(self.read_device_data(18,246,d_type='int16'))/10.0))
 
 
 
