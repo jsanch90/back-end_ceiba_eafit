@@ -1,10 +1,9 @@
 #include <CurieBLE.h>
-//Enable debug to be able to print in arduino IDE
 
 //BOSCH variables
 bool debug = true;
-long h_priority_time = 5000;  // Time in milliseconds to send the high priority registers to the RaspBerry
-long l_priority_time = 15000; // Time in milliseconds to send the low priority registers to the RaspBerry
+long h_priority_time = 300000;  // Time in milliseconds to send the high priority registers to the RaspBerry (currently 5 min)
+long l_priority_time = 600000; // Time in milliseconds to send the low priority registers to the RaspBerry (Currently 10 min)
 long last_time_h = 0;
 long last_time_l = 0;
 unsigned char data2[20] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
@@ -12,7 +11,7 @@ unsigned char data2[20] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
 //Temperature sensor variables
 int temperature_pin = 0; // Analog pin by reading the value of the sensor
 float temp_val = 0;      // Value read by the temperature sensor
-long temp_time = 20000;
+long temp_time = 300000; // 5 min
 long last_time_temp = 0;
 
 //Irradiation sensor variables (Spektron 210)
@@ -21,7 +20,7 @@ float irra_val = 0;      //Irradiation value
 float amp_gain = 51;     //Amplifier gain (LM324N)
 float input_v = 3.3;     //Input voltage in Volts
 float sensor_value = 0;  //Raw value read by the sensor
-long irra_time = 20000;
+long irra_time = 300000; // 5 min
 long last_time_irra = 0;
 
 void setup()
