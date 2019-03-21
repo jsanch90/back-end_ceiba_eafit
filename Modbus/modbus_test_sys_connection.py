@@ -59,9 +59,9 @@ class ModBus_API:
 		print('Battery power: {0}W'.format(self.read_device_data(842,100,d_type='int16')))
 		print('Battery state of charge: {0}%'.format(self.read_device_data(843,100,d_type='uint16')))
 		print('Battery state: {0}'.format(self.battery_state_map(self.read_device_data(844,100,d_type='int16'))))
-                print('AC consumption: {0}W'.format(self.read_device_data(817,100,d_type='int16')))
-                print('vebus volt : {0}'.format(float(self.read_device_data(15,246,d_type='uint16'))/10.0))
-                print('vebus current : {0}'.format(float(self.read_device_data(18,246,d_type='int16'))/10.0))
+		print('AC consumption: {0}W'.format(self.read_device_data(817,100,d_type='int16')))
+		print('vebus volt : {0}'.format(float(self.read_device_data(15,246,d_type='uint16'))/10.0))
+		print('vebus current : {0}'.format(float(self.read_device_data(18,246,d_type='int16'))/10.0))
 
 
 
